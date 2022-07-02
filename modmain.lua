@@ -118,16 +118,16 @@ local function AddMiniMap( inst )
 		local MapWidget = require "widgets/mapwidget"
 
 		MapWidget_OnZoomIn_base = MapWidget.OnZoomIn
-		MapWidget.OnZoomIn = function(self)
-			MapWidget_OnZoomIn_base( self )
+		MapWidget.OnZoomIn = function(self, negativedelta)
+			MapWidget_OnZoomIn_base( self, negativedelta )
 			if self.shown then
 				controls.minimap_small.mapscreenzoom = math.max(0,controls.minimap_small.mapscreenzoom-1)
 			end
 		end
 
 		MapWidget_OnZoomOut_base = MapWidget.OnZoomOut
-		MapWidget.OnZoomOut = function(self)
-			MapWidget_OnZoomOut_base( self )
+		MapWidget.OnZoomOut = function(self, positivedelta)
+			MapWidget_OnZoomOut_base( self, positivedelta)
 			if self.shown then
 				controls.minimap_small.mapscreenzoom = controls.minimap_small.mapscreenzoom+1
 			end
